@@ -92,7 +92,6 @@ export class Departament extends Component {
             headers:{
                 'Accept':'application/json',
                 'Content-type':'application/json',
-
             } 
         })
         .then(res=>res.json())
