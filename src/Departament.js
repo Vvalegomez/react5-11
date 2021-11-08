@@ -6,11 +6,11 @@ export class Departament extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            departamentt: []
+            departaments: []
         }
     }
     refreshList(){
-        fetch(variables.API_URL+'departament')
+        fetch(variables.API_URL+'Ciudad')
         .then(response=>response.json())
         .then(data=>{
             this.setState({departaments:data});
@@ -22,7 +22,7 @@ export class Departament extends Component {
 
     render() {
         const {
-            departamentt
+            departaments
         }=this.state;
 
         return (
@@ -42,10 +42,10 @@ export class Departament extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {departamentt.map(dep =>
-                            <tr key={dep.DepartamentId}>
-                                <td>{dep.DepartamentId}</td>
-                                <td>{dep.DepName}</td>
+                        {departaments.map(dep =>
+                            <tr key={dep.idCiudad}>
+                                <td>{dep.idCiudad}</td>
+                                <td>{dep.nombreCiudad}</td>
                                 <td>
                                     <button type="button"
                                         className="btn btn-light mr-1">
@@ -64,7 +64,8 @@ export class Departament extends Component {
                                 </td>
                             </tr>
 
-                        )}
+                            )
+                        }
 
                     </tbody>
                 </table>
