@@ -8,8 +8,8 @@ export class Departament extends Component {
         this.state = {
             departaments: [],
             ModalTitle: "",
-            DepName: "",
-            DepId: 0
+            nombreCiudad: "",
+            idCiudad: 0
         }
     }
     refreshList() {
@@ -23,7 +23,7 @@ export class Departament extends Component {
         this.refreshList();
     }
     ChangeDepartamentName =(e)=>{
-        this.setState({DepName: e.target.value});
+        this.setState({nombreCiudad: e.target.value});
     }
 
     addClick() {
@@ -37,8 +37,8 @@ export class Departament extends Component {
     editClick(dep) {
         this.setState({ 
             ModalTitle: "Edit Dept",
-            DepId: dep.idCiudad,
-            DepName: dep.nombreCiudad
+            idCiudad: dep.idCiudad,
+            nombreCiudad: dep.nombreCiudad
         });
     }
 
@@ -62,6 +62,22 @@ export class Departament extends Component {
             alert('Failed');
         })
     }
+
+    // updateClick(){
+    //     var val={
+    //       Id : this.idEmpleado,
+    //       nombreEmpleado : this.nombreEmpleado,
+    //       Departamento : this.nombreDepto,
+    //       fechaInicio : this.fechaInicio,
+    //       fotoPerfil : this.fotoPerfil
+    //     };
+    //     this.http.put(environment.API_URL+'empleado/' + val.Id, val).subscribe(res=>{
+    //       alert("Modificacion exitosa");
+    //       this.obtenerEmpleados();
+    //     }, error => {
+    //       alert("Ocurrio un error al modificar el dato");
+    //     })
+    //   }
 
     updateClick(){
         fetch(variables.API_URL+'Ciudad',{
@@ -108,8 +124,8 @@ export class Departament extends Component {
         const {
             departaments,
             ModalTitle,
-            DepName,
-            DepId
+            nombreCiudad,
+            idCiudad
         } = this.state;
 
         return (
@@ -149,7 +165,7 @@ export class Departament extends Component {
                                     </button>
                                     <button type="button"
                                         className="btn btn-light mr-1"
-                                        onClick={()=>this.deleteClick(dep.DepId)}>
+                                        onClick={()=>this.deleteClick(dep.idCiudad)}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">
                                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
                                             <path fillRule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
@@ -175,9 +191,9 @@ export class Departament extends Component {
                             <div className="modal-body">
                                 <div className="input-group mb-3">
                                     <span className="input-group-text">DepartamentName</span>
-                                    <input type="text" className="form-control" value={DepName} onChange={this.ChangeDepartamentName}></input>
+                                    <input type="text" className="form-control" value={nombreCiudad} onChange={this.ChangeDepartamentName}></input>
                                 </div>
-                                {DepId === 0 ?
+                                {idCiudad === 0 ?
                                     <button type="button"
                                         className="btn btn-primary float-start"
                                         onClick={()=>this.createClick()}
@@ -185,7 +201,7 @@ export class Departament extends Component {
                                         Create</button>
                                     : null}
 
-                                {DepId !== 0 ?
+                                {idCiudad !== 0 ?
                                     <button type="button"
                                         className="btn btn-primary float-start"
                                         onClick={()=>this.updateClick()}
