@@ -6,7 +6,7 @@ export class Departament extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            departaments: [],
+            ciudades: [],
             ModalTitle: "",
             nombreCiudad: "",
             idCiudad: 0
@@ -16,12 +16,13 @@ export class Departament extends Component {
         fetch(variables.API_URL + 'Ciudad')
             .then(response => response.json())
             .then(data => {
-                this.setState({ departaments: data });
+                this.setState({ ciudades: data });
             })
     }
     componentDidMount() {
         this.refreshList();
     }
+
     ChangeDepartamentName =(e)=>{
         this.setState({nombreCiudad: e.target.value});
     }
@@ -62,22 +63,6 @@ export class Departament extends Component {
             alert('Failed');
         })
     }
-
-    // updateClick(){
-    //     var val={
-    //       Id : this.idEmpleado,
-    //       nombreEmpleado : this.nombreEmpleado,
-    //       Departamento : this.nombreDepto,
-    //       fechaInicio : this.fechaInicio,
-    //       fotoPerfil : this.fotoPerfil
-    //     };
-    //     this.http.put(environment.API_URL+'empleado/' + val.Id, val).subscribe(res=>{
-    //       alert("Modificacion exitosa");
-    //       this.obtenerEmpleados();
-    //     }, error => {
-    //       alert("Ocurrio un error al modificar el dato");
-    //     })
-    //   }
 
     updateClick(){
         fetch(variables.API_URL+'Ciudad',{
@@ -122,7 +107,7 @@ export class Departament extends Component {
 
     render() {
         const {
-            departaments,
+            ciudades,
             ModalTitle,
             nombreCiudad,
             idCiudad
@@ -149,7 +134,7 @@ export class Departament extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {departaments.map(dep =>
+                        {ciudades.map(dep =>
                             <tr key={dep.idCiudad}>
                                 <td>{dep.idCiudad}</td>
                                 <td>{dep.nombreCiudad}</td>
